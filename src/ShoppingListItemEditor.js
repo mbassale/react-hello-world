@@ -21,7 +21,11 @@ class ShoppingListItemEditor extends Component {
 
     handleClick(e) {
         e.preventDefault();
-        if (this.props.onSubmit) {
+        if (this.state.grocery == '') {
+            this.setState({
+                firstShown: false
+            });
+        } else if (this.props.onSubmit) {
             this.props.onSubmit(this.state.grocery);
             this.setState({
                 firstShown: true,
