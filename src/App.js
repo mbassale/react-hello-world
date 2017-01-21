@@ -14,13 +14,16 @@ class App extends Component {
             showAddGroceryForm: false,
             groceries: initialGroceries
         };
+        this.onClearAllGroceries = this.onClearAllGroceries.bind(this);
         this.onGroceryNew = this.onGroceryNew.bind(this);
         this.onCreateGrocery = this.onCreateGrocery.bind(this);
         this.onRemoveGrocery = this.onRemoveGrocery.bind(this);
     }
 
-    static selectMenuItem(itemNumber) {
-        alert('Selected: ' + itemNumber);
+    onClearAllGroceries() {
+        this.setState({
+            groceries: []
+        });
     }
 
     onGroceryNew() {
@@ -60,14 +63,9 @@ class App extends Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={1} href="#" onClick={() => App.selectMenuItem(1)}>Menu 1</NavItem>
-                        <NavItem eventKey={2} href="#" onClick={() => App.selectMenuItem(2)}>Menu 2</NavItem>
-                        <NavDropdown eventKey={3} title="Menu 3" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1} onClick={() => App.selectMenuItem(3.1)}>Menu Item 3.1</MenuItem>
-                            <MenuItem eventKey={3.2} onClick={() => App.selectMenuItem(3.2)}>Menu Item 3.2</MenuItem>
-                            <MenuItem eventKey={3.3} onClick={() => App.selectMenuItem(3.3)}>Menu Item 3.3</MenuItem>
-                            <MenuItem divider/>
-                            <MenuItem eventKey={3.4} onClick={() => App.selectMenuItem(3.4)}>Menu Item 3.4</MenuItem>
+                        <NavDropdown eventKey={3} title="Groceries List" id="basic-nav-dropdown">
+                            <MenuItem eventKey={3.1} onClick={this.onClearAllGroceries}>Clear All Groceries</MenuItem>
+                            <MenuItem eventKey={3.2} onClick={this.onGroceryNew}>Add Grocery</MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar>
